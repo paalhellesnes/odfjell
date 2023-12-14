@@ -6,7 +6,7 @@
 #     *****    **   **   *******       *   *
 
 """
-The activity shift pattern class contains additional properties for the ProPeople shift types for crew activities.
+The activity shift pattern date class contains additional properties for the ProPeople shift types for crew activities.
 """
 
 import pandas as pd

@@ -40,7 +40,6 @@ class ActivityShiftPattern:
         shift_pattern_description: str,
         shift_pattern_days: int,
         shift_pattern: str,
-        start_date: date,
         mobilization_hours: int,
         work_hours: int,
         demobilization_hours: int
@@ -65,39 +64,35 @@ class ActivityShiftPattern:
         """
         if not isinstance(shift_pattern_id, int):
             raise exception.InvalidArgumentTypeError("The shift_pattern_id parameter must be an integer value!")
-        if not shift_pattern_id:
+        if shift_pattern_id is None:
             raise exception.InvalidArgumentTypeError("The shift_pattern_id parameter must have a value!")
         if not isinstance(shift_pattern_code, str):
             raise exception.InvalidArgumentTypeError("The shift_pattern_code parameter must be a string value!")
-        if not shift_pattern_code:
+        if shift_pattern_code is None:
             raise exception.InvalidArgumentTypeError("The shift_pattern_code parameter must have a value!")
         if not isinstance(shift_pattern_description, str):
             raise exception.InvalidArgumentTypeError("The shift_pattern_description parameter must be a string value!")
-        if not shift_pattern_description:
+        if shift_pattern_description is None:
             raise exception.InvalidArgumentTypeError("The shift_pattern_description parameter must have a value!")
         if not isinstance(shift_pattern_days, int):
             raise exception.InvalidArgumentTypeError("The shift_pattern_days parameter must be an integer value!")
-        if not shift_pattern_days:
+        if shift_pattern_days is None:
             raise exception.InvalidArgumentTypeError("The shift_pattern_days parameter must have a value!")
         if not isinstance(shift_pattern, str):
             raise exception.InvalidArgumentTypeError("The shift_pattern parameter must be a string value!")
-        if not shift_pattern:
+        if shift_pattern is None:
             raise exception.InvalidArgumentTypeError("The shift_pattern parameter must have a value!")
-        if not isinstance(start_date, date):
-            raise exception.InvalidArgumentTypeError("The start_date parameter must be a date value!")
-        if not start_date:
-            raise exception.InvalidArgumentTypeError("The start_date parameter must have a value!")
-        if not isinstance(mobilization_hours, int):
+        if not isinstance(mobilization_hours, float):
             raise exception.InvalidArgumentTypeError("The mobilization_hours parameter must be an integer value!")
-        if not mobilization_hours:
+        if mobilization_hours is None:
             raise exception.InvalidArgumentTypeError("The mobilization_hours parameter must have a value!")
-        if not isinstance(work_hours, int):
+        if not isinstance(work_hours, float):
             raise exception.InvalidArgumentTypeError("The work_hours parameter must be an integer value!")
-        if not work_hours:
+        if work_hours is None:
             raise exception.InvalidArgumentTypeError("The work_hours parameter must have a value!")
-        if not isinstance(demobilization_hours, int):
+        if not isinstance(demobilization_hours, float):
             raise exception.InvalidArgumentTypeError("The demobilization_hours parameter must be an integer value!")
-        if not demobilization_hours:
+        if demobilization_hours is None:
             raise exception.InvalidArgumentTypeError("The demobilization_hours parameter must have a value!")
         
         self.shift_pattern_id = shift_pattern_id
@@ -105,7 +100,6 @@ class ActivityShiftPattern:
         self.shift_pattern_description = shift_pattern_description
         self.shift_pattern_days = shift_pattern_days
         self.shift_pattern = shift_pattern
-        self.start_date = start_date
         self.mobilization_hours = mobilization_hours
         self.work_hours = work_hours
         self.demobilization_hours = demobilization_hours
@@ -135,7 +129,6 @@ class ActivityShiftPattern:
             "ShiftPatternDescription": [self.shift_pattern_description],
             "ShiftPatternDays": [self.shift_pattern_days],
             "ShiftPattern": [self.shift_pattern],
-            "StartDate": [self.start_date],
             "MobilizationHours": [self.mobilization_hours],
             "WorkHours": [self.work_hours],
             "DemobilizationHours": [self.demobilization_hours],
