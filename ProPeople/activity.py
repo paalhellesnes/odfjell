@@ -165,8 +165,18 @@ class Activity:
         self.last_updated_datetime = last_updated_datetime
 
         self.person = f"{self.person_last_name} {self.person_first_name}"
-        self.shift_pattern = None
-        self.original_shift_pattern = None
+
+        self.original_shift_pattern = self.get_original_shift_pattern(
+            shift_pattern_id = self.shift_pattern_id,
+            shift_pattern_code = self.shift_pattern_code
+        )
+
+        self.shift_pattern = self.calculate_shift_pattern(
+            original_shift_pattern = self.original_shift_pattern,
+            original_from_date = self.original_from_date,
+            from_date = self.from_date,
+            to_date = self.to_date
+        )
 
 
     def __repr__(self) -> str:
@@ -181,6 +191,28 @@ class Activity:
     # ######################
     # #    M E T H O D S
     # ######################
+
+    def get_original_shift_pattern(self,
+        shift_pattern_id: int,
+        shift_pattern_code: str
+    ) -> str:
+        """
+        Returns the activity's original shift pattern as a string.
+        """
+        return "NNNNNNNDDDDDDD"
+
+
+    def calculate_shift_pattern(self,
+        original_shift_pattern: str,
+        original_from_date: date,
+        from_date: date,
+        to_date: date
+    ) -> str:
+        """
+        Returns the activity's actual shift pattern as a string.
+        """
+        return "NNNNNDDDDDDDNN"
+
 
     def to_dataframe_row(self) -> pd.DataFrame:
         """

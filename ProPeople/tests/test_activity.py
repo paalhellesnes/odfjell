@@ -44,6 +44,8 @@ class ProPeopleActivityTestCase(unittest.TestCase):
         last_updated_datetime = datetime(2023, 11, 28, 17, 32, 50)
 
         expected_person = "Olsen Kim"
+        expected_original_shift_pattern = "NNNNNNNDDDDDDD"
+        expected_shift_pattern = "NNNNNDDDDDDDNN"
 
         propeople_activity = Activity(
             activity_id = activity_id,
@@ -100,6 +102,8 @@ class ProPeopleActivityTestCase(unittest.TestCase):
         assert propeople_activity.comment == comment, f"The expected value of the activity comment is '{comment}' and not '{propeople_activity.comment}'"
         assert propeople_activity.last_updated_datetime == last_updated_datetime, f"The expected value of the activity last updated datetime is '{last_updated_datetime}' and not '{propeople_activity.last_updated_datetime}'"
         assert propeople_activity.person == expected_person, f"The expected value of the activity person is '{expected_person}' and not '{propeople_activity.person}'"
+        assert propeople_activity.original_shift_pattern == expected_original_shift_pattern, f"The expected value of the activity original shift pattern is '{expected_original_shift_pattern}' and not '{propeople_activity.original_shift_pattern}'"
+        assert propeople_activity.shift_pattern == expected_shift_pattern, f"The expected value of the activity actual shift pattern is '{expected_shift_pattern}' and not '{propeople_activity.shift_pattern}'"
 
 
     def test_Activity_repr(self):
