@@ -45,7 +45,7 @@ class ActivityShiftPattern:
         demobilization_hours: float
     ):
         """
-        Initializing the activity shift pattern class class.
+        Initializing the activity shift pattern class.
 
         Args:
             shift_pattern_id (int, mandatory): Unique ProPeople identification number for the activity shift pattern.

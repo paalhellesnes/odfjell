@@ -26,7 +26,7 @@ class ActivityShiftPatternCollection:
 
     def __init__(self):
         """
-        Initializing the activity shift pattern class class.
+        Initializing the activity shift pattern collection class.
         """
         
         self.patterns = []

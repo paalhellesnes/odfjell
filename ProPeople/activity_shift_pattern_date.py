@@ -42,7 +42,7 @@ class ActivityShiftPatternDate:
         demobilization_hours: float
     ):
         """
-        Initializing the activity shift pattern date class class.
+        Initializing the activity shift pattern date class.
 
         Args:
             date (date, mandatory): The date for the activity.
