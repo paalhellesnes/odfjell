@@ -42,9 +42,9 @@ class ProPeopleActivityShiftPatternCollectionTestCase(unittest.TestCase):
                 shift_pattern_description = "First 7 dayshift, then 7 nightshift. 6 hours on mobilization day, then 12 hours next shifts and 6 hours on demobilization day.",
                 shift_pattern_days = 14,
                 shift_pattern = "DDDDDDDNNNNNNN",
-                mobilization_hours = 6,
-                work_hours = 12,
-                demobilization_hours = 6 ))
+                mobilization_hours = 6.0,
+                work_hours = 12.0,
+                demobilization_hours = 6.0 ))
         propeople_activity_shift_pattern_collection.add_pattern(
             ActivityShiftPattern(
                 shift_pattern_id = 3,
@@ -52,9 +52,9 @@ class ProPeopleActivityShiftPatternCollectionTestCase(unittest.TestCase):
                 shift_pattern_description = "First 7 nightshift, then 7 dayshift. 6 hours on mobilization day, then 12 hours next shifts and 6 hours on demobilization day.",
                 shift_pattern_days = 14,
                 shift_pattern = "NNNNNNNDDDDDDD",
-                mobilization_hours = 6,
-                work_hours = 12,
-                demobilization_hours = 6 ))
+                mobilization_hours = 6.0,
+                work_hours = 12.0,
+                demobilization_hours = 6.0 ))
 
         assert propeople_activity_shift_pattern_collection.__repr__() == expected_repr, f"The expected value of the class repr is '{expected_repr}' and not '{propeople_activity_shift_pattern_collection.__repr__()}'"
 
@@ -68,9 +68,9 @@ class ProPeopleActivityShiftPatternCollectionTestCase(unittest.TestCase):
         expected_shift_pattern_description = "First 7 nightshift, then 7 dayshift. 6 hours on mobilization day, then 12 hours next shifts and 6 hours on demobilization day."
         expected_shift_pattern_days = 14
         expected_shift_pattern = "NNNNNNNDDDDDDD"
-        expected_mobilization_hours = 6
-        expected_work_hours = 12
-        expected_demobilization_hours = 6
+        expected_mobilization_hours = 6.0
+        expected_work_hours = 12.0
+        expected_demobilization_hours = 6.0
 
         propeople_activity_shift_pattern_collection = ActivityShiftPatternCollection()
 
@@ -81,9 +81,9 @@ class ProPeopleActivityShiftPatternCollectionTestCase(unittest.TestCase):
                 shift_pattern_description = "First 7 dayshift, then 7 nightshift. 6 hours on mobilization day, then 12 hours next shifts and 6 hours on demobilization day.",
                 shift_pattern_days = 14,
                 shift_pattern = "DDDDDDDNNNNNNN",
-                mobilization_hours = 6,
-                work_hours = 12,
-                demobilization_hours = 6 ))
+                mobilization_hours = 6.0,
+                work_hours = 12.0,
+                demobilization_hours = 6.0 ))
         propeople_activity_shift_pattern_collection.add_pattern(
             ActivityShiftPattern(
                 shift_pattern_id = 3,
@@ -91,9 +91,9 @@ class ProPeopleActivityShiftPatternCollectionTestCase(unittest.TestCase):
                 shift_pattern_description = "First 7 nightshift, then 7 dayshift. 6 hours on mobilization day, then 12 hours next shifts and 6 hours on demobilization day.",
                 shift_pattern_days = 14,
                 shift_pattern = "NNNNNNNDDDDDDD",
-                mobilization_hours = 6,
-                work_hours = 12,
-                demobilization_hours = 6 ))
+                mobilization_hours = 6.0,
+                work_hours = 12.0,
+                demobilization_hours = 6.0 ))
 
         propeople_activity_shift_pattern_df = propeople_activity_shift_pattern_collection.to_dataframe()
 

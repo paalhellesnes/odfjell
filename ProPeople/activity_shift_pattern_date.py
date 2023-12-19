@@ -37,9 +37,9 @@ class ActivityShiftPatternDate:
         date: datetime.date,
         shift_pattern_id: int,
         shift: str,
-        mobilization_hours: int,
-        work_hours: int,
-        demobilization_hours: int
+        mobilization_hours: float,
+        work_hours: float,
+        demobilization_hours: float
     ):
         """
         Initializing the activity shift pattern date class class.
@@ -48,9 +48,9 @@ class ActivityShiftPatternDate:
             date (date, mandatory): The date for the activity.
             shift_pattern_id (int, mandatory): Unique ProPeople identification number for the activity shift pattern.
             shift (str, mandatory): A string character defining the shift. N represents night shift and D represents day shift.
-            mobilization_hours (int, mandatory): Number of working hours in the day of mobilization (first day of the activity) as defined by the activity shift pattern.
-            work_hours (int, mandatory): Number of normal working hours as defined by the activity shift pattern.
-            demobilization_hours (int, mandatory): Number of working hours in the day of demobilization (last day of the activity) as defined by the activity shift pattern.
+            mobilization_hours (float, mandatory): Number of working hours in the day of mobilization (first day of the activity) as defined by the activity shift pattern.
+            work_hours (float, mandatory): Number of normal working hours as defined by the activity shift pattern.
+            demobilization_hours (float, mandatory): Number of working hours in the day of demobilization (last day of the activity) as defined by the activity shift pattern.
 
         Raises:
             InvalidArgumentTypeError: One or more of the passed parameter vales have invalid type.
@@ -58,29 +58,29 @@ class ActivityShiftPatternDate:
         """
         if not isinstance(date, datetime.date):
             raise exception.InvalidArgumentTypeError("The date parameter must be a date value!")
-        if not date:
+        if date is None:
             raise exception.InvalidArgumentTypeError("The date parameter must have a value!")
         if not isinstance(shift_pattern_id, int):
             raise exception.InvalidArgumentTypeError("The shift_pattern_id parameter must be an integer value!")
-        if not shift_pattern_id:
+        if shift_pattern_id is None:
             raise exception.InvalidArgumentTypeError("The shift_pattern_id parameter must have a value!")
         if not isinstance(shift, str):
             raise exception.InvalidArgumentTypeError("The shift parameter must be a string value!")
-        if not shift:
+        if shift is None:
             raise exception.InvalidArgumentTypeError("The shift parameter must have a value!")
-        if not isinstance(mobilization_hours, int):
-            raise exception.InvalidArgumentTypeError("The mobilization_hours parameter must be an integer value!")
-        if not mobilization_hours:
+        if not isinstance(mobilization_hours, float):
+            raise exception.InvalidArgumentTypeError("The mobilization_hours parameter must be a float value!")
+        if mobilization_hours is None:
             raise exception.InvalidArgumentTypeError("The mobilization_hours parameter must have a value!")
-        if not isinstance(work_hours, int):
-            raise exception.InvalidArgumentTypeError("The work_hours parameter must be an integer value!")
-        if not work_hours:
+        if not isinstance(work_hours, float):
+            raise exception.InvalidArgumentTypeError("The work_hours parameter must be a float value!")
+        if work_hours is None:
             raise exception.InvalidArgumentTypeError("The work_hours parameter must have a value!")
-        if not isinstance(demobilization_hours, int):
-            raise exception.InvalidArgumentTypeError("The demobilization_hours parameter must be an integer value!")
-        if not demobilization_hours:
+        if not isinstance(demobilization_hours, float):
+            raise exception.InvalidArgumentTypeError("The demobilization_hours parameter must be a float value!")
+        if demobilization_hours is None:
             raise exception.InvalidArgumentTypeError("The demobilization_hours parameter must have a value!")
-        
+
         self.date = date
         self.shift_pattern_id = shift_pattern_id
         self.shift = shift

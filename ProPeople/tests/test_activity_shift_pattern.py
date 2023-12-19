@@ -22,9 +22,9 @@ class ProPeopleActivityShiftPatternTestCase(unittest.TestCase):
         shift_pattern_days = 14
         shift_pattern = "DDDDDDDNNNNNNN"
         # start_date = date(2023, 11, 28)
-        mobilization_hours = 6
-        work_hours = 12
-        demobilization_hours = 6
+        mobilization_hours = 6.0
+        work_hours = 12.0
+        demobilization_hours = 6.0
 
         propeople_activity_shift_pattern = ActivityShiftPattern(
             shift_pattern_id = shift_pattern_id,
@@ -57,9 +57,9 @@ class ProPeopleActivityShiftPatternTestCase(unittest.TestCase):
         shift_pattern_days = 14
         shift_pattern = "DDDDDDDNNNNNNN"
         # start_date = date(2023, 11, 28)
-        mobilization_hours = 6
-        work_hours = 12
-        demobilization_hours = 6
+        mobilization_hours = 6.0
+        work_hours = 12.0
+        demobilization_hours = 6.0
 
         expected_repr = "D7N7 - DDDDDDDNNNNNNN"
 

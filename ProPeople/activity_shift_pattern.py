@@ -25,9 +25,9 @@ class ActivityShiftPattern:
     - shift_pattern_days (int): Number of days defined by the activity shift pattern.
     - shift_pattern (str): Text string defining the activity shift pattern. N represents night shift and D represents day shift.
     - start_date (date): The date that the activity shift pattern will start. The pattern will then repeat indefinitely into the future.
-    - mobilization_hours (int): Number of working hours in the day of mobilization (first day of the activity) as defined by the activity shift pattern.
-    - work_hours (int): Number of normal working hours as defined by the activity shift pattern.
-    - demobilization_hours (int): Number of working hours in the day of demobilization (last day of the activity) as defined by the activity shift pattern.
+    - mobilization_hours (float): Number of working hours in the day of mobilization (first day of the activity) as defined by the activity shift pattern.
+    - work_hours (float): Number of normal working hours as defined by the activity shift pattern.
+    - demobilization_hours (float): Number of working hours in the day of demobilization (last day of the activity) as defined by the activity shift pattern.
     """
 
     ###########################
@@ -40,9 +40,9 @@ class ActivityShiftPattern:
         shift_pattern_description: str,
         shift_pattern_days: int,
         shift_pattern: str,
-        mobilization_hours: int,
-        work_hours: int,
-        demobilization_hours: int
+        mobilization_hours: float,
+        work_hours: float,
+        demobilization_hours: float
     ):
         """
         Initializing the activity shift pattern class class.
@@ -83,15 +83,15 @@ class ActivityShiftPattern:
         if shift_pattern is None:
             raise exception.InvalidArgumentTypeError("The shift_pattern parameter must have a value!")
         if not isinstance(mobilization_hours, float):
-            raise exception.InvalidArgumentTypeError("The mobilization_hours parameter must be an integer value!")
+            raise exception.InvalidArgumentTypeError("The mobilization_hours parameter must be a float value!")
         if mobilization_hours is None:
             raise exception.InvalidArgumentTypeError("The mobilization_hours parameter must have a value!")
         if not isinstance(work_hours, float):
-            raise exception.InvalidArgumentTypeError("The work_hours parameter must be an integer value!")
+            raise exception.InvalidArgumentTypeError("The work_hours parameter must be a float value!")
         if work_hours is None:
             raise exception.InvalidArgumentTypeError("The work_hours parameter must have a value!")
         if not isinstance(demobilization_hours, float):
-            raise exception.InvalidArgumentTypeError("The demobilization_hours parameter must be an integer value!")
+            raise exception.InvalidArgumentTypeError("The demobilization_hours parameter must be a float value!")
         if demobilization_hours is None:
             raise exception.InvalidArgumentTypeError("The demobilization_hours parameter must have a value!")
         
