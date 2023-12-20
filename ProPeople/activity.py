@@ -13,7 +13,7 @@ This data is gathered from the ProPeople API.
 import pandas as pd
 from datetime import date, datetime
 import exception
-
+from activity_shift_patterns import ActivityShiftPatterns
 
 class Activity:
     """
@@ -170,12 +170,21 @@ class Activity:
             shift_pattern_id = self.shift_pattern_id,
             shift_pattern_code = self.shift_pattern_code
         )
+        if self.original_shift_pattern is None:
+            self.shift_pattern_days = 0
+        else:
+            self.shift_pattern_days = len(self.original_shift_pattern)
+
+        self.duration_in_days = self.calculate_duration_in_days(
+            from_date = self.from_date,
+            to_date = self.to_date
+        )
 
         self.shift_pattern = self.calculate_shift_pattern(
             original_shift_pattern = self.original_shift_pattern,
             original_from_date = self.original_from_date,
             from_date = self.from_date,
-            to_date = self.to_date
+            duration_in_days = self.duration_in_days
         )
 
 
@@ -199,19 +208,60 @@ class Activity:
         """
         Returns the activity's original shift pattern as a string.
         """
-        return "NNNNNNNDDDDDDD"
+        activity_shift_patterns = ActivityShiftPatterns()
+        activity_shift_patterns.populate()
+
+        if shift_pattern_id is not None:
+            shift_pattern = activity_shift_patterns.get_shift_pattern_by_id(shift_pattern_id)
+        elif shift_pattern_code is not None:
+            shift_pattern = activity_shift_patterns.get_shift_pattern_by_code(shift_pattern_code)
+        else:
+            shift_pattern = None
+
+        return shift_pattern
+
+
+    def calculate_duration_in_days(self,
+        from_date: date,
+        to_date: date
+    ) -> int:
+        """
+        Returns the actual activity's duration in number of days.
+        """
+        try:
+            # from_date = datetime.strptime(self.from_date, "%Y-%m-%d")
+            # to_date = datetime.strptime(self.to_date, "%Y-%m-%d")
+            duration = (to_date - from_date).days + 1
+            return duration
+        except ValueError:
+            print("Invalid date format. Unable to calculate duration.")
+            return None
 
 
     def calculate_shift_pattern(self,
         original_shift_pattern: str,
         original_from_date: date,
         from_date: date,
-        to_date: date
+        duration_in_days: int
     ) -> str:
         """
         Returns the activity's actual shift pattern as a string.
         """
-        return "NNNNNDDDDDDDNN"
+        if original_shift_pattern is None:
+            return None
+        
+        original_pattern_length = len(original_shift_pattern)
+        diff_in_days = (from_date - original_from_date).days
+
+        shift_pattern = ""
+        for day in range(0, duration_in_days):
+            day_number = day + diff_in_days
+            day_index = day_number % original_pattern_length
+            shift = original_shift_pattern[day_index]
+            shift_pattern = shift_pattern + shift
+            # print(f"day[{day}] : number={day_number} index={day_index} shift={shift} pattern={shift_pattern}")
+
+        return shift_pattern
 
 
     def to_dataframe_row(self) -> pd.DataFrame:
