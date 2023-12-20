@@ -187,6 +187,10 @@ class Activity:
             duration_in_days = self.duration_in_days
         )
 
+        self.day_pattern = self.calculate_day_pattern(
+            duration_in_days = self.duration_in_days
+        )
+
 
     def __repr__(self) -> str:
         return f"{self.person} - {self.rig_site} - {self.from_date}-{self.to_date}"
@@ -262,6 +266,25 @@ class Activity:
             # print(f"day[{day}] : number={day_number} index={day_index} shift={shift} pattern={shift_pattern}")
 
         return shift_pattern
+
+
+    def calculate_day_pattern(self,
+        duration_in_days: int
+    ) -> str:
+        """
+        Returns the activity's actual day pattern as a string.
+        """
+        if duration_in_days is None or duration_in_days < 1:
+            return ""
+        elif duration_in_days == 1:
+            return "M"
+        elif duration_in_days == 2:
+            return "MD"
+        
+        work_day_pattern = 'W' * (duration_in_days-2)
+        day_pattern = "M" + work_day_pattern + "D"
+
+        return day_pattern
 
 
     def to_dataframe_row(self) -> pd.DataFrame:
