@@ -64,7 +64,7 @@ class ProPeopleActivitiesTestCase(unittest.TestCase):
                 last_updated_datetime = datetime(2023, 11, 28, 17, 32, 50)))
         propeople_activities.add_activity(
             Activity(
-                activity_id = 1,
+                activity_id = 2,
                 from_date = date(2023, 12, 1),
                 to_date = date(2023, 12, 24),
                 original_from_date = date(2023, 12, 1),
