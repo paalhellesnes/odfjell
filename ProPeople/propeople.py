@@ -25,7 +25,7 @@ import exception
 
 tests.test_ActivityShiftPatternDate_init()
 
-
+create_activity_date_table
 
 
 

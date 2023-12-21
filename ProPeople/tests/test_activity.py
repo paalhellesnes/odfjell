@@ -19,7 +19,7 @@ class ProPeopleActivityTestCase(unittest.TestCase):
 
         activity_id = 1
         from_date = date(2023, 11, 1)
-        to_date = date(2023, 11, 13)
+        to_date = date(2023, 11, 16)
         original_from_date = date(2023, 11, 3)
         original_to_date = date(2023, 11, 15)
         shift_pattern_id = 3
@@ -45,8 +45,10 @@ class ProPeopleActivityTestCase(unittest.TestCase):
 
         expected_person = "Olsen Kim"
         expected_original_shift_pattern = "NNNNNNNDDDDDDD"
-        expected_shift_pattern = "DDNNNNNNNDDDD"
-        expected_day_pattern = "MWWWWWWWWWWWD"
+        expected_original_shift_pattern_days = 14
+        expected_duration_in_days = 16
+        expected_shift_pattern = "DDNNNNNNNDDDDDDD"
+        expected_day_pattern = "MWWWWWWWWWWWWWWD"
 
         propeople_activity = Activity(
             activity_id = activity_id,
@@ -104,65 +106,41 @@ class ProPeopleActivityTestCase(unittest.TestCase):
         assert propeople_activity.last_updated_datetime == last_updated_datetime, f"The expected value of the activity last updated datetime is '{last_updated_datetime}' and not '{propeople_activity.last_updated_datetime}'"
         assert propeople_activity.person == expected_person, f"The expected value of the activity person is '{expected_person}' and not '{propeople_activity.person}'"
         assert propeople_activity.original_shift_pattern == expected_original_shift_pattern, f"The expected value of the activity original shift pattern is '{expected_original_shift_pattern}' and not '{propeople_activity.original_shift_pattern}'"
+        assert propeople_activity.original_shift_pattern_days == expected_original_shift_pattern_days, f"The expected value of the activity original shift pattern days is '{expected_original_shift_pattern_days}' and not '{propeople_activity.original_shift_pattern_days}'"
+        assert propeople_activity.duration_in_days == expected_duration_in_days, f"The expected value of the activity duration in days is '{expected_duration_in_days}' and not '{propeople_activity.duration_in_days}'"
         assert propeople_activity.shift_pattern == expected_shift_pattern, f"The expected value of the activity actual shift pattern is '{expected_shift_pattern}' and not '{propeople_activity.shift_pattern}'"
         assert propeople_activity.day_pattern == expected_day_pattern, f"The expected value of the activity actual day pattern is '{expected_day_pattern}' and not '{propeople_activity.day_pattern}'"
 
 
     def test_Activity_repr(self):
-        activity_id = 1
-        from_date = date(2023, 11, 1)
-        to_date = date(2023, 11, 13)
-        original_from_date = date(2023, 11, 3)
-        original_to_date = date(2023, 11, 15)
-        shift_pattern_id = 3
-        shift_pattern_code = "N7D7"
-        rotation_group = "BraeAlphaB5"
-        rotation_pattern = "21-21"
-        person_id = "KIMO"
-        person_propeople_id = 36766
-        person_first_name = "Kim"
-        person_last_name = "Olsen"
-        internal_or_external = "Internal"
-        job_id = "BU1128DAB"
-        job_description = "Crane Operator - DAB"
-        discipline = "Replacement"
-        job_sort = "2100"
-        job_emergency_description = "Firefighter & HLO & Fast Rescue Boat"
-        project_business_unit_report_description = "Deepsea Aberdeen"
-        rig_site = "Deepsea Aberdeen"
-        cabin = "106B"
-        status = ""
-        comment = "For Hallvar Koløy"
-        last_updated_datetime = datetime(2023, 11, 28, 17, 32, 50)
-
-        expected_repr = "Olsen Kim - Deepsea Aberdeen - 2023-11-01-2023-11-13"
+        expected_repr = "Olsen Kim - Deepsea Aberdeen - 2023-11-01-2023-11-16"
 
         propeople_activity = Activity(
-            activity_id = activity_id,
-            from_date = from_date,
-            to_date = to_date,
-            original_from_date = original_from_date,
-            original_to_date = original_to_date,
-            shift_pattern_id = shift_pattern_id,
-            shift_pattern_code = shift_pattern_code,
-            rotation_group = rotation_group,
-            rotation_pattern = rotation_pattern,
-            person_id = person_id,
-            person_propeople_id = person_propeople_id,
-            person_first_name = person_first_name,
-            person_last_name = person_last_name,
-            internal_or_external = internal_or_external,
-            job_id = job_id,
-            job_description = job_description,
-            discipline = discipline,
-            job_sort = job_sort,
-            job_emergency_description = job_emergency_description,
-            project_business_unit_report_description = project_business_unit_report_description,
-            rig_site = rig_site,
-            cabin = cabin,
-            status = status,
-            comment = comment,
-            last_updated_datetime = last_updated_datetime
+            activity_id = 1,
+            from_date = date(2023, 11, 1),
+            to_date = date(2023, 11, 16),
+            original_from_date = date(2023, 11, 3),
+            original_to_date = date(2023, 11, 15),
+            shift_pattern_id = 3,
+            shift_pattern_code = "N7D7",
+            rotation_group = "BraeAlphaB5",
+            rotation_pattern =  "21-21",
+            person_id = "KIMO",
+            person_propeople_id = 36766,
+            person_first_name = "Kim",
+            person_last_name = "Olsen",
+            internal_or_external = "Internal",
+            job_id = "BU1128DAB",
+            job_description = "Crane Operator - DAB",
+            discipline = "Replacement",
+            job_sort = "2100",
+            job_emergency_description = "Firefighter & HLO & Fast Rescue Boat",
+            project_business_unit_report_description = "Deepsea Aberdeen",
+            rig_site = "Deepsea Aberdeen",
+            cabin = "106B",
+            status = "",
+            comment = "For Hallvar Koløy",
+            last_updated_datetime = datetime(2023, 11, 28, 17, 32, 50)
         )
 
         assert propeople_activity.__repr__() == expected_repr, f"The expected value of the class repr is '{expected_repr}' and not '{propeople_activity.__repr__()}'"
@@ -382,8 +360,8 @@ class ProPeopleActivityTestCase(unittest.TestCase):
 
 tests = ProPeopleActivityTestCase()
 tests.test_Activity_init()
-# tests.test_Activity_repr()
-# tests.test_Activity_get_original_shift_pattern()
-# tests.test_Activity_calculate_duration_in_days()
-# tests.test_Activity_calculate_shift_pattern()
-# tests.test_Activity_calculate_day_pattern()
+tests.test_Activity_repr()
+tests.test_Activity_get_original_shift_pattern()
+tests.test_Activity_calculate_duration_in_days()
+tests.test_Activity_calculate_shift_pattern()
+tests.test_Activity_calculate_day_pattern()

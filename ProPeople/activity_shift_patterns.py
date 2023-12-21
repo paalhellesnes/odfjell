@@ -29,7 +29,17 @@ class ActivityShiftPatterns:
         Initializing the activity shift pattern table class.
         """
         
-        self.patterns_df = pd.DataFrame(columns=['ID', 'ShiftPatternID', 'ShiftPatternCode', 'ShiftPatternDescription', 'ShiftPatternDays', 'ShiftPattern', 'MobilizationHours', 'WorkHours', 'DemobilizationHours'])
+        self.patterns_df = pd.DataFrame(columns=[
+            'ID', 
+            'ShiftPatternID', 
+            'ShiftPatternCode', 
+            'ShiftPatternDescription', 
+            'ShiftPatternDays', 
+            'ShiftPattern', 
+            'MobilizationHours', 
+            'WorkHours', 
+            'DemobilizationHours'
+            ])
 
 
     def __repr__(self) -> str:
@@ -56,10 +66,9 @@ class ActivityShiftPatterns:
         pattern_id = len(self.patterns_df) + 1
         pattern_dict = {
             'ID': pattern_id,
-            'ShiftPatternID': pattern.shift_pattern_id, # shift_pattern_id
+            'ShiftPatternID': pattern.shift_pattern_id,
             'ShiftPatternCode': pattern.shift_pattern_code,
             'ShiftPatternDescription': pattern.shift_pattern_description,
-            'ShiftPatternDays': pattern.shift_pattern_days,
             'ShiftPattern': pattern.shift_pattern,
             'MobilizationHours': pattern.mobilization_hours,
             'WorkHours': pattern.work_hours,
@@ -94,31 +103,6 @@ class ActivityShiftPatterns:
         return None
 
 
-
-        # print(f"{type(pattern)}")
-        # shift_pattern_idx = int(pattern['ShiftPatternID']),
-        # shift_pattern_code = str(pattern['ShiftPatternCode']),
-        # shift_pattern_description = str(pattern.ShiftPatternDescription),
-        # shift_pattern_days = int(pattern.ShiftPatternDays),
-        # shift_pattern = str(pattern.ShiftPattern),
-        # mobilization_hours = float(pattern.MobilizationHours),
-        # work_hours = float(pattern.WorkHours),
-        # demobilization_hours = float(pattern.DemobilizationHours)
-
-        # activity_shift_pattern = ActivityShiftPattern(
-        #     shift_pattern_id = int(pattern.ShiftPatternID),
-        #     shift_pattern_code = str(pattern.ShiftPatternCode),
-        #     shift_pattern_description = str(pattern.ShiftPatternDescription),
-        #     shift_pattern_days = int(pattern.ShiftPatternDays),
-        #     shift_pattern = str(pattern.ShiftPattern),
-        #     mobilization_hours = float(pattern.MobilizationHours),
-        #     work_hours = float(pattern.WorkHours),
-        #     demobilization_hours = float(pattern.DemobilizationHours)
-        # )
-
-        # return activity_shift_pattern if not pattern.empty else None
-
-
     def get_pattern_by_code(self, shift_pattern_code):
         """
         Retreive a activity shift pattern object from the table with a given shift pattern code.
@@ -151,7 +135,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 2,
                 shift_pattern_code = "D7N7",
                 shift_pattern_description = "First 7 dayshift, then 7 nightshift. 6 hours on mobilization day, then 12 hours next shifts and 6 hours on demobilization day.",
-                shift_pattern_days = 14,
                 shift_pattern = "DDDDDDDNNNNNNN",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -161,7 +144,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 3,
                 shift_pattern_code = "N7D7",
                 shift_pattern_description = "First 7 nightshift, then 7 dayshift. 6 hours on mobilization day, then 12 hours next shifts and 6 hours on demobilization day.",
-                shift_pattern_days = 14,
                 shift_pattern = "NNNNNNNDDDDDDD",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -171,7 +153,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 6,
                 shift_pattern_code = "D",
                 shift_pattern_description = "Only dayshift. 6 hours on mob day, then 12 hours next shifts, then 6 hours demob day.",
-                shift_pattern_days = 1,
                 shift_pattern = "D",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -181,7 +162,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 7,
                 shift_pattern_code = "N",
                 shift_pattern_description = "Only nightshift. 6 hours on mob day, then 12 hours next shifts, then 6 hours demob day.",
-                shift_pattern_days = 1,
                 shift_pattern = "N",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -191,7 +171,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 26,
                 shift_pattern_code = "D(H9-12-9)",
                 shift_pattern_description = "Only dayshift. 9 hours on mob day, then 12 hours next shifts, then 9 hours demob day.",
-                shift_pattern_days = 1,
                 shift_pattern = "D",
                 mobilization_hours = 9.0,
                 work_hours = 12.0,
@@ -201,7 +180,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 27,
                 shift_pattern_code = "D(H9-12-0)",
                 shift_pattern_description = "Only dayshift. 9 hours on mob day, then 12 hours next shifts, then 0 hours demob day.",
-                shift_pattern_days = 1,
                 shift_pattern = "D",
                 mobilization_hours = 9.0,
                 work_hours = 12.0,
@@ -212,7 +190,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 45,
                 shift_pattern_code = "D14N7",
                 shift_pattern_description = "First 14 dayshift, then 7 nightshift. 6 hours on mob day, then 12 hours next shifts, then 6 hours demob day.",
-                shift_pattern_days = 21,
                 shift_pattern = "DDDDDDDDDDDDDDNNNNNNN",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -222,7 +199,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 46,
                 shift_pattern_code = "N14D7",
                 shift_pattern_description = "First 14 nightshift, then 7 dayshift. 6 hours on mob day, then 12 hours next shifts, then 6 hours demob day.",
-                shift_pattern_days = 21,
                 shift_pattern = "NNNNNNNNNNNNNNDDDDDDD",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -232,7 +208,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 47,
                 shift_pattern_code = "D7N14",
                 shift_pattern_description = "First 7 dayshift, then 14 nightshift. 6 hours on mob day, then 12 hours next shifts, then 6 hours demob day.",
-                shift_pattern_days = 21,
                 shift_pattern = "DDDDDDDNNNNNNNNNNNNNN",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -242,7 +217,7 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 48,
                 shift_pattern_code = "N7D14",
                 shift_pattern_description = "First 7 nightshift, then 14 dayshift. 6 hours on mob day, then 12 hours next shifts, then 6 hours demob day.",
-                shift_pattern_days = 21,
+                # shift_pattern_days = 21,
                 shift_pattern = "NNNNNNNDDDDDDDDDDDDDD",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -252,7 +227,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 65,
                 shift_pattern_code = "D14N14",
                 shift_pattern_description = "First 14 dayshift, then 14 nightshift. 6 hours on mob day, then 12 hours next shifts, then 6 hours demob day.",
-                shift_pattern_days = 28,
                 shift_pattern = "DDDDDDDDDDDDDDNNNNNNNNNNNNNN",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -262,7 +236,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 66,
                 shift_pattern_code = "N14D14",
                 shift_pattern_description = "First 14 nightshift, then 14 dayshift. 6 hours on mob day, then 12 hours next shifts, then 6 hours demob day.",
-                shift_pattern_days = 28,
                 shift_pattern = "NNNNNNNNNNNNNNDDDDDDDDDDDDDD",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -272,7 +245,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 85,
                 shift_pattern_code = "Sick/Leave OWS 8,7 H 4/4 Rota",
                 shift_pattern_description = "Only dayshift (but does we want that?do we use it Yanira ?). 8,7 hours all shifts.",
-                shift_pattern_days = 1,
                 shift_pattern = "D",
                 mobilization_hours = 8.7,
                 work_hours = 8.7,
@@ -282,7 +254,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 86,
                 shift_pattern_code = "Sick/Leave OWS 7,8 H 4/5 Rota",
                 shift_pattern_description = "Only dayshift (but does we want that?do we use it Yanira ?). 7,8 hours all shifts.",
-                shift_pattern_days = 1,
                 shift_pattern = "D",
                 mobilization_hours = 7.8,
                 work_hours = 7.8,
@@ -292,7 +263,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 105,
                 shift_pattern_code = "Sick/Leave C-Pool 4 H",
                 shift_pattern_description = "Only dayshift (but does we want that?do we use it Yanira ?). 4 hours all shifts.",
-                shift_pattern_days = 1,
                 shift_pattern = "D",
                 mobilization_hours = 4.0,
                 work_hours = 4.0,
@@ -302,7 +272,6 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 145,
                 shift_pattern_code = "Sick/Leave MODU-PDR & OWS Rota",
                 shift_pattern_description = "Only dayshift. 6 hours on mob day, then 12 hours next shifts, then 6 hours demob day.",
-                shift_pattern_days = 1,
                 shift_pattern = "D",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -312,9 +281,7 @@ class ActivityShiftPatterns:
                 shift_pattern_id = 186,
                 shift_pattern_code = "D(H12-12-9)",
                 shift_pattern_description = "Only dayshift. 12 hours on mob day, then 12 hours next shifts, then 9 hours demob day.",
-                shift_pattern_days = 1,
                 shift_pattern = "D",
                 mobilization_hours = 12.0,
                 work_hours = 12.0,
                 demobilization_hours = 9.0 ))
-

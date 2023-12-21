@@ -171,9 +171,9 @@ class Activity:
             shift_pattern_code = self.shift_pattern_code
         )
         if self.original_shift_pattern is None:
-            self.shift_pattern_days = 0
+            self.original_shift_pattern_days = 0
         else:
-            self.shift_pattern_days = len(self.original_shift_pattern)
+            self.original_shift_pattern_days = len(self.original_shift_pattern)
 
         self.duration_in_days = self.calculate_duration_in_days(
             from_date = self.from_date,
@@ -318,7 +318,10 @@ class Activity:
             "Comment": [self.comment],
             "LastUpdatedDatetime": [self.last_updated_datetime],
             "Person": [self.person],
-            "ShiftPattern": [self.shift_pattern],
             "OriginalShiftPattern": [self.original_shift_pattern],
+            "OriginalShiftPatternDays": [self.original_shift_pattern_days],
+            "DurationInDays": [self.duration_in_days],
+            "ShiftPattern": [self.shift_pattern],
+            "DayPattern": [self.day_pattern],
         }
         return pd.DataFrame(data)

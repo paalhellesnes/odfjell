@@ -40,7 +40,7 @@ class ProPeopleActivityShiftPatternsTestCase(unittest.TestCase):
                 shift_pattern_id = 2,
                 shift_pattern_code = "D7N7",
                 shift_pattern_description = "First 7 dayshift, then 7 nightshift. 6 hours on mobilization day, then 12 hours next shifts and 6 hours on demobilization day.",
-                shift_pattern_days = 14,
+                # shift_pattern_days = 14,
                 shift_pattern = "DDDDDDDNNNNNNN",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -50,7 +50,7 @@ class ProPeopleActivityShiftPatternsTestCase(unittest.TestCase):
                 shift_pattern_id = 3,
                 shift_pattern_code = "N7D7",
                 shift_pattern_description = "First 7 nightshift, then 7 dayshift. 6 hours on mobilization day, then 12 hours next shifts and 6 hours on demobilization day.",
-                shift_pattern_days = 14,
+                # shift_pattern_days = 14,
                 shift_pattern = "NNNNNNNDDDDDDD",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -71,7 +71,7 @@ class ProPeopleActivityShiftPatternsTestCase(unittest.TestCase):
                 shift_pattern_id = 2,
                 shift_pattern_code = "D7N7",
                 shift_pattern_description = "First 7 dayshift, then 7 nightshift. 6 hours on mobilization day, then 12 hours next shifts and 6 hours on demobilization day.",
-                shift_pattern_days = 14,
+                # shift_pattern_days = 14,
                 shift_pattern = "DDDDDDDNNNNNNN",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -81,7 +81,7 @@ class ProPeopleActivityShiftPatternsTestCase(unittest.TestCase):
                 shift_pattern_id = 3,
                 shift_pattern_code = "N7D7",
                 shift_pattern_description = "First 7 nightshift, then 7 dayshift. 6 hours on mobilization day, then 12 hours next shifts and 6 hours on demobilization day.",
-                shift_pattern_days = 14,
+                # shift_pattern_days = 14,
                 shift_pattern = "NNNNNNNDDDDDDD",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -103,7 +103,7 @@ class ProPeopleActivityShiftPatternsTestCase(unittest.TestCase):
                 shift_pattern_id = 2,
                 shift_pattern_code = "D7N7",
                 shift_pattern_description = "First 7 dayshift, then 7 nightshift. 6 hours on mobilization day, then 12 hours next shifts and 6 hours on demobilization day.",
-                shift_pattern_days = 14,
+                # shift_pattern_days = 14,
                 shift_pattern = "DDDDDDDNNNNNNN",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -113,7 +113,7 @@ class ProPeopleActivityShiftPatternsTestCase(unittest.TestCase):
                 shift_pattern_id = 3,
                 shift_pattern_code = "N7D7",
                 shift_pattern_description = "First 7 nightshift, then 7 dayshift. 6 hours on mobilization day, then 12 hours next shifts and 6 hours on demobilization day.",
-                shift_pattern_days = 14,
+                # shift_pattern_days = 14,
                 shift_pattern = "NNNNNNNDDDDDDD",
                 mobilization_hours = 6.0,
                 work_hours = 12.0,
@@ -141,9 +141,9 @@ class ProPeopleActivityShiftPatternsTestCase(unittest.TestCase):
 #     unittest.main()
 
 tests = ProPeopleActivityShiftPatternsTestCase()
-tests.test_ActivityShiftPatterns_init()
-tests.test_ActivityShiftPatterns_repr()
-tests.test_ActivityShiftPatterns_add_pattern()
-tests.test_ActivityShiftPatterns_get_pattern_by_id()
-tests.test_ActivityShiftPatterns_get_pattern_by_code()
+# tests.test_ActivityShiftPatterns_init()
+# tests.test_ActivityShiftPatterns_repr()
+# tests.test_ActivityShiftPatterns_add_pattern()
+# tests.test_ActivityShiftPatterns_get_pattern_by_id()
+# tests.test_ActivityShiftPatterns_get_pattern_by_code()
 tests.test_ActivityShiftPatterns_populate()

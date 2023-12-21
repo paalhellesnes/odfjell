@@ -19,7 +19,7 @@ class ProPeopleActivityShiftPatternTestCase(unittest.TestCase):
         shift_pattern_id = 1
         shift_pattern_code = "D7N7"
         shift_pattern_description = "First 7 dayshift, then 7 nightshift"
-        shift_pattern_days = 14
+        # shift_pattern_days = 14
         shift_pattern = "DDDDDDDNNNNNNN"
         # start_date = date(2023, 11, 28)
         mobilization_hours = 6.0
@@ -30,7 +30,7 @@ class ProPeopleActivityShiftPatternTestCase(unittest.TestCase):
             shift_pattern_id = shift_pattern_id,
             shift_pattern_code = shift_pattern_code,
             shift_pattern_description = shift_pattern_description,
-            shift_pattern_days = shift_pattern_days,
+            # shift_pattern_days = shift_pattern_days,
             shift_pattern = shift_pattern,
             # start_date = start_date,
             mobilization_hours = mobilization_hours,
@@ -42,7 +42,7 @@ class ProPeopleActivityShiftPatternTestCase(unittest.TestCase):
         assert propeople_activity_shift_pattern.shift_pattern_id == shift_pattern_id, f"The expected value of the shift pattern ID is '{shift_pattern_id}' and not '{propeople_activity_shift_pattern.shift_pattern_id}'"
         assert propeople_activity_shift_pattern.shift_pattern_code == shift_pattern_code, f"The expected value of the shift pattern code is '{shift_pattern_code}' and not '{propeople_activity_shift_pattern.shift_pattern_code}'"
         assert propeople_activity_shift_pattern.shift_pattern_description == shift_pattern_description, f"The expected value of the shift pattern description is '{shift_pattern_description}' and not '{propeople_activity_shift_pattern.shift_pattern_description}'"
-        assert propeople_activity_shift_pattern.shift_pattern_days == shift_pattern_days, f"The expected value of the shift pattern days is '{shift_pattern_days}' and not '{propeople_activity_shift_pattern.shift_pattern_days}'"
+        # assert propeople_activity_shift_pattern.shift_pattern_days == shift_pattern_days, f"The expected value of the shift pattern days is '{shift_pattern_days}' and not '{propeople_activity_shift_pattern.shift_pattern_days}'"
         assert propeople_activity_shift_pattern.shift_pattern == shift_pattern, f"The expected value of the shift pattern is '{shift_pattern}' and not '{propeople_activity_shift_pattern.shift_pattern}'"
         # assert propeople_activity_shift_pattern.start_date == start_date, f"The expected value of the start date is '{start_date}' and not '{propeople_activity_shift_pattern.start_date}'"
         assert propeople_activity_shift_pattern.mobilization_hours == mobilization_hours, f"The expected value of the mobilization hours is '{mobilization_hours}' and not '{propeople_activity_shift_pattern.mobilization_hours}'"
@@ -54,7 +54,7 @@ class ProPeopleActivityShiftPatternTestCase(unittest.TestCase):
         shift_pattern_id = 1
         shift_pattern_code = "D7N7"
         shift_pattern_description = "First 7 dayshift, then 7 nightshift"
-        shift_pattern_days = 14
+        # shift_pattern_days = 14
         shift_pattern = "DDDDDDDNNNNNNN"
         # start_date = date(2023, 11, 28)
         mobilization_hours = 6.0
@@ -67,7 +67,7 @@ class ProPeopleActivityShiftPatternTestCase(unittest.TestCase):
             shift_pattern_id = shift_pattern_id,
             shift_pattern_code = shift_pattern_code,
             shift_pattern_description = shift_pattern_description,
-            shift_pattern_days = shift_pattern_days,
+            # shift_pattern_days = shift_pattern_days,
             shift_pattern = shift_pattern,
             # start_date = start_date,
             mobilization_hours = mobilization_hours,

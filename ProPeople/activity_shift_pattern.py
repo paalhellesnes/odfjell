@@ -38,7 +38,6 @@ class ActivityShiftPattern:
         shift_pattern_id: int,
         shift_pattern_code: str,
         shift_pattern_description: str,
-        shift_pattern_days: int,
         shift_pattern: str,
         mobilization_hours: float,
         work_hours: float,
@@ -74,10 +73,6 @@ class ActivityShiftPattern:
             raise exception.InvalidArgumentTypeError("The shift_pattern_description parameter must be a string value!")
         if shift_pattern_description is None:
             raise exception.InvalidArgumentTypeError("The shift_pattern_description parameter must have a value!")
-        if not isinstance(shift_pattern_days, int):
-            raise exception.InvalidArgumentTypeError("The shift_pattern_days parameter must be an integer value!")
-        if shift_pattern_days is None:
-            raise exception.InvalidArgumentTypeError("The shift_pattern_days parameter must have a value!")
         if not isinstance(shift_pattern, str):
             raise exception.InvalidArgumentTypeError("The shift_pattern parameter must be a string value!")
         if shift_pattern is None:
@@ -98,7 +93,6 @@ class ActivityShiftPattern:
         self.shift_pattern_id = shift_pattern_id
         self.shift_pattern_code = shift_pattern_code
         self.shift_pattern_description = shift_pattern_description
-        self.shift_pattern_days = shift_pattern_days
         self.shift_pattern = shift_pattern
         self.mobilization_hours = mobilization_hours
         self.work_hours = work_hours
@@ -106,7 +100,6 @@ class ActivityShiftPattern:
 
 
     def __repr__(self) -> str:
-        #return f"{self.shift_pattern_code} - {self.shift_pattern} starting at {self.start_date}"
         return f"{self.shift_pattern_code} - {self.shift_pattern}"
 
 
@@ -127,7 +120,6 @@ class ActivityShiftPattern:
             "ShiftPatternID": [self.shift_pattern_id],
             "ShiftPatternCode": [self.shift_pattern_code],
             "ShiftPatternDescription": [self.shift_pattern_description],
-            "ShiftPatternDays": [self.shift_pattern_days],
             "ShiftPattern": [self.shift_pattern],
             "MobilizationHours": [self.mobilization_hours],
             "WorkHours": [self.work_hours],
