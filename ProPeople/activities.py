@@ -43,12 +43,12 @@ class Activities:
             "RotationGroup",
             "RotationPattern",
             "PersonID",
-            "Person_PropeopleID",
-            "Person_FirstName",
+            "PersonPropeopleID",
+            "PersonFirstName",
             "PersonLastName",
             "InternalOrExternal",
             "JobID",
-            "Job_Description",
+            "JobDescription",
             "Discipline",
             "JobSort",
             "JobEmergencyDescription",
@@ -101,12 +101,12 @@ class Activities:
             "RotationGroup": activity.rotation_group,
             "RotationPattern": activity.rotation_pattern,
             "PersonID": activity.person_id,
-            "Person_PropeopleID": activity.person_propeople_id,
-            "Person_FirstName": activity.person_first_name,
+            "PersonPropeopleID": activity.person_propeople_id,
+            "PersonFirstName": activity.person_first_name,
             "PersonLastName": activity.person_last_name,
             "InternalOrExternal": activity.internal_or_external,
             "JobID": activity.job_id,
-            "Job_Description": activity.job_description,
+            "JobDescription": activity.job_description,
             "Discipline": activity.discipline,
             "JobSort": activity.job_sort,
             "JobEmergencyDescription": activity.job_emergency_description,
@@ -126,7 +126,7 @@ class Activities:
         self.activities_df = self.activities_df.append(activity_dict, ignore_index=True)
 
 
-    def list_patterns(self):
+    def list_activities(self):
         """
         Iterate over all activities in the table and print their information.
         """
@@ -144,7 +144,7 @@ class Activities:
         self.patterns = []
         self.add_activity(
             Activity(
-                activity_id = 1,
+                activity_id = 101,
                 from_date = date(2023, 11, 1),
                 to_date = date(2023, 11, 16),
                 original_from_date = date(2023, 11, 3),
@@ -171,7 +171,7 @@ class Activities:
                 last_updated_datetime = datetime(2023, 11, 28, 17, 32, 50)))
         self.add_activity(
             Activity(
-                activity_id = 1,
+                activity_id = 102,
                 from_date = date(2023, 12, 1),
                 to_date = date(2023, 12, 24),
                 original_from_date = date(2023, 12, 1),

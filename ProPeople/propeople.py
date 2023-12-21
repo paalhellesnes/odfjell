@@ -6,12 +6,18 @@
 #     *****    **   **   *******       *   *
 
 """
-The main application for creating the activity shift pattern date table for the ProPeople shift types for crew activities.
+The main library for creating the activity shift pattern date table for the ProPeople shift types for crew activities.
 """
 
 import pandas as pd
-import datetime
+from datetime import date, datetime, timedelta
 import exception
+from activity import Activity
+from activities import Activities
+from activity_date import ActivityDate
+from activity_dates import ActivityDates
+from activity_shift_pattern import ActivityShiftPattern
+from activity_shift_patterns import ActivityShiftPatterns
 
 
 ################
@@ -19,85 +25,95 @@ import exception
 ################
 
 
+
 ##########################
 #    F U N C T I O N S
 ##########################
 
-tests.test_ActivityShiftPatternDate_init()
 
-create_activity_date_table
-
-
-
-
-##############################################################
-#       A Z U R E   D E L T A   L A K E   S T O R A G E
-#             F O R    V I S U A L   S T U D I O
-# -----------------------------------------------------------
-#  Comment out this code if running as notebook in Synapse
-##############################################################
-
-def save_dataframe_to_delta_lake(data: pd.DataFrame, partition_column: str, merge_condition: str, full_delta_lake_path: str, loading_type: str) -> str:
+def create_activity_date_table(
+    activities: Activities
+) -> pd.DataFrame:
     """
-    Stores a given Pandas DataFrame to a full Azure Delta Lake path (folder+entity).
+    Generates an activity dates table from a given activities table.
 
     Args:
-        data (pd.DataFrame): Input data as a Pandas DataFrame.
-        partition_column (str): Column in the DataFrame used for partitioning.
-        merge_condition (str): Condition for merging new data with existing data.
-        full_delta_lake_path (str): Full path to the Delta Lake (including entity name).
-        loading_type (str): Loading operation type; 'initial', 'full', 'delta'.
+        activities (Activities): Input activities table as a Pandas DataFrame.
 
     Returns:
-        Status message. Example: 'Input data Pandas DataFrame is empty - no new data stored to Azure Delta Lake'
+        The resulting activity dates table as a Pandas DataFrame.
 
     Raises:
         InvalidArgumentTypeError: One or more parameters have invalid type.
         InvalidArgumentValueError: One or more parameters have invalid value.
-        DataConversionError: Failed to to create a Spark DataFrame from the given Pandas DataFrame.
     """
-    # logging.debug(f"('{partition_column}','{merge_condition}','{full_delta_lake_path}','{loading_type}')")
-    if not isinstance(data, pd.DataFrame):
-        raise exception.InvalidArgumentTypeError(f"The data parameter must be a Pandas DataFrame value type, the given value '{data}' is of type {type(data)}")
-    if partition_column and not isinstance(partition_column, str):
-        raise exception.InvalidArgumentTypeError(f"The partition_column parameter must be a string value type, the given value '{partition_column}' is of type {type(partition_column)}")
-    if not isinstance(merge_condition, str):
-        raise exception.InvalidArgumentTypeError(f"The merge_condition parameter must be a string value type, the given value '{merge_condition}' is of type {type(merge_condition)}")
-    if not isinstance(full_delta_lake_path, str):
-        raise exception.InvalidArgumentTypeError(f"The folder parameter must be a string value type, the given value '{full_delta_lake_path}' is of type {type(full_delta_lake_path)}")
-    if not isinstance(loading_type, str):
-        raise exception.InvalidArgumentTypeError(f"The loading_type parameter must be a string value type, the given value '{loading_type}' is of type {type(loading_type)}")
-    if not loading_type in ["initial", "full", "delta"]:
-        raise exception.InvalidArgumentValueError(f"The loading_type parameter must have one of the following values; 'initial', 'full', 'delta', the given value is '{loading_type}'")
+    if not isinstance(activities, Activities):
+        raise exception.InvalidArgumentTypeError(f"The activities parameter must be a Activities value type, the given value '{activities}' is of type {type(activities)}")
 
-    if data.empty:
-        return "Pandas DataFrame is empty - no new data saved to Azure Delta Lake"
+    activity_shift_patterns = ActivityShiftPatterns()
+    activity_shift_patterns.populate()
 
-    entity_name = utility.extract_entity_name_from_full_path(full_delta_lake_path)
-    data.to_csv(f"UnitTest/{entity_name}.csv", index=False)
-    return "Pandas DataFrame saved OK"
+    activity_dates = ActivityDates()
 
+    if not activities.activities_df.empty:
 
-def get_last_modified_datetime_from_delta_lake(full_delta_lake_path: str, last_modified_datetime_column: str, default_value: str = "2000.01.01") -> str:
-    """
-    Retreives the last modified date of a given delta lake file.
+        for index, row in activities.activities_df.iterrows():
 
-    Args:
-        delta_lake_file_path (str): Full path to the delta lake folder.
-        delta_lake_file (str): Name of the delta lake file.
-        last_modified_datetime_column (str): Default returned data if extracting last modified date from given delta lake file fails. Example: '2010.01.11'
+            activity = Activity(
+                activity_id = row['ActivityID'],
+                from_date = row['FromDate'],
+                to_date = row['ToDate'],
+                original_from_date = row['OriginalFromDate'],
+                original_to_date = row['OriginalToDate'],
+                shift_pattern_id = row['ShiftPatternID'],
+                shift_pattern_code = row['ShiftPatternCode'],
+                rotation_group = row['RotationGroup'],
+                rotation_pattern = row['RotationPattern'],
+                person_id = row['PersonID'],
+                person_propeople_id = row['PersonPropeopleID'],
+                person_first_name = row['PersonFirstName'],
+                person_last_name = row['PersonLastName'],
+                internal_or_external = row['InternalOrExternal'],
+                job_id = row['JobID'],
+                job_description = row['JobDescription'],
+                discipline = row['Discipline'],
+                job_sort = row['JobSort'],
+                job_emergency_description = row['JobEmergencyDescription'],
+                project_business_unit_report_description = row['ProjectBusinessUnitReportDescription'],
+                rig_site = row['RigSite'],
+                cabin = row['Cabin'],
+                status = row['Status'],
+                comment = row['Comment'],
+                last_updated_datetime = row['LastUpdatedDatetime'])
 
-    Raises:
-        TypeError: One or more of the passed parameter vales have invalid type.
-    """
-    # logging.debug(f"('{full_delta_lake_path}','{last_modified_datetime_column}','{default_value}')")
-    if not type(full_delta_lake_path) is str:
-        raise TypeError(f"the full_delta_lake_path argument must be a value of string type, the given value ({type(full_delta_lake_path)}) = '{full_delta_lake_path}' is invalid")
-    if not type(last_modified_datetime_column) is str:
-        raise TypeError(f"the last_modified_datetime_column argument must be a value of string type, the given value ({type(last_modified_datetime_column)}) = '{last_modified_datetime_column}' is invalid")
-    if not type(default_value) is str:
-        raise TypeError(f"the default_value argument must be a value of string type, the given value ({type(default_value)}) = '{default_value}' is invalid")
+            mobilization_hours = activity_shift_patterns.get_mobilization_hours_by_code(activity.shift_pattern_code)
+            work_hours = activity_shift_patterns.get_work_hours_by_code(activity.shift_pattern_code)
+            demobilization_hours = activity_shift_patterns.get_demobilization_hours_by_code(activity.shift_pattern_code)
 
-    return default_value
+            for day in range(activity.duration_in_days):
+                shift_code_according_to_shift_pattern = activity.shift_pattern[day]
+                day_code_according_to_day_pattern = activity.day_pattern[day]
+                if day_code_according_to_day_pattern == "M":
+                    hours_according_to_shift_pattern = mobilization_hours
+                elif day_code_according_to_day_pattern == "D":
+                    hours_according_to_shift_pattern = demobilization_hours
+                else:
+                    hours_according_to_shift_pattern = work_hours
+                activity_dates.add_activity_date(
+                    ActivityDate(
+                        activity_id = activity.activity_id,
+                        activity_date = activity.from_date + timedelta(days=day),
+                        person_id = activity.person_id,
+                        from_date = activity.from_date,
+                        to_date = activity.to_date,
+                        duration_in_days = activity.duration_in_days,
+                        shift_pattern = activity.shift_pattern,
+                        shift_code = shift_code_according_to_shift_pattern,
+                        day_code = day_code_according_to_day_pattern,
+                        hours = hours_according_to_shift_pattern,
+                        original_from_date = activity.original_from_date,
+                        original_to_date = activity.original_to_date,
+                        original_shift_pattern = activity.original_shift_pattern ))
 
+    return activity_dates
 

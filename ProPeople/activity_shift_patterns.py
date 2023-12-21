@@ -112,6 +112,45 @@ class ActivityShiftPatterns:
         """
         pattern = self.patterns_df.loc[self.patterns_df['ShiftPatternCode'] == shift_pattern_code]
         return pattern if not pattern.empty else None
+
+
+    def get_mobilization_hours_by_code(self, shift_pattern_code):
+        """
+        Retreive the mobilization hours from the table with a given shift pattern code.
+
+        Parameters:
+        - shift_pattern_code (str): The shift pattern code for which we wish to retreive the mobilization hours.
+        """
+        results = self.patterns_df.loc[self.patterns_df['ShiftPatternCode'] == shift_pattern_code, 'MobilizationHours']
+        if not results.empty:
+            mobilization_hours = results.iloc[0]
+        return mobilization_hours if not results.empty else None
+
+
+    def get_work_hours_by_code(self, shift_pattern_code):
+        """
+        Retreive the work hours from the table with a given shift pattern code.
+
+        Parameters:
+        - shift_pattern_code (str): The shift pattern code for which we wish to retreive the work hours.
+        """
+        results = self.patterns_df.loc[self.patterns_df['ShiftPatternCode'] == shift_pattern_code, 'WorkHours']
+        if not results.empty:
+            work_hours = results.iloc[0]
+        return work_hours if not results.empty else None
+
+
+    def get_demobilization_hours_by_code(self, shift_pattern_code):
+        """
+        Retreive the demobilization hours from the table with a given shift pattern code.
+
+        Parameters:
+        - shift_pattern_code (str): The shift pattern code for which we wish to retreive the demobilization hours.
+        """
+        results = self.patterns_df.loc[self.patterns_df['ShiftPatternCode'] == shift_pattern_code, 'DemobilizationHours']
+        if not results.empty:
+            demobilization_hours = results.iloc[0]
+        return demobilization_hours if not results.empty else None
     
 
     def list_patterns(self):

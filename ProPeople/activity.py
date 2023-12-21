@@ -307,7 +307,7 @@ class Activity:
             "PersonLastName": [self.person_last_name],
             "InternalOrExternal": [self.internal_or_external],
             "JobID": [self.job_id],
-            "Job_Description": [self.job_description],
+            "JobDescription": [self.job_description],
             "Discipline": [self.discipline],
             "JobSort": [self.job_sort],
             "JobEmergencyDescription": [self.job_emergency_description],

@@ -88,7 +88,7 @@ class ActivityDates:
         self.activity_dates_df = self.activity_dates_df.append(activity_date_dict, ignore_index=True)
 
 
-    def list_patterns(self):
+    def list_activity_dates(self):
         """
         Iterate over all activity dates in the table and print their information.
         """
