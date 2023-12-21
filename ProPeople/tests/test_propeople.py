@@ -25,10 +25,10 @@ class ProPeopleTestCase(unittest.TestCase):
         activities.list_activities()
 
         activity_dates = propeople.create_activity_date_table(activities)
-
         activity_dates.list_activity_dates()
 
-
+        activities.activities_df.to_csv('activities.csv', index=False)
+        activity_dates.activity_dates_df.to_csv('activity_dates.csv', index=False)
 
 
 # if __name__ == '__main__':

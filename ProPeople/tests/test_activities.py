@@ -92,7 +92,7 @@ class ProPeopleActivitiesTestCase(unittest.TestCase):
 
         assert propeople_activities.__repr__() == expected_repr, f"The expected value of the class repr is '{expected_repr}' and not '{propeople_activities.__repr__()}'"
 
-        propeople_activities.list_patterns()
+        propeople_activities.list_activities()
 
 
     def test_Activities_populate(self):
@@ -104,7 +104,7 @@ class ProPeopleActivitiesTestCase(unittest.TestCase):
 
         assert propeople_activities.__repr__() == expected_repr, f"The expected value of the class repr is '{expected_repr}' and not '{propeople_activities.__repr__()}'"
 
-        propeople_activities.list_patterns()
+        propeople_activities.list_activities()
 
 
 # if __name__ == '__main__':
